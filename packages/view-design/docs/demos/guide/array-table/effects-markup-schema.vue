@@ -96,7 +96,7 @@ import {
   Input,
   Editable,
   Switch,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const fields = createSchemaField({
   components: {

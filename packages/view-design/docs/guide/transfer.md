@@ -16,4 +16,4 @@
 
 ## API
 
-参考 [https://element.eleme.io/#/zh-CN/component/transfer](https://element.eleme.io/#/zh-CN/component/transfer)
+参考 [https://www.iviewui.com/components/transfer](https://www.iviewui.com/components/transfer)

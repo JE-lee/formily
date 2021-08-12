@@ -212,13 +212,13 @@ import {
   DatePicker,
   FormLayout,
   TimePicker,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const SuccessIcon = {
   functional: true,
   render(h) {
     return h('i', {
-      class: 'el-icon-circle-check',
+      class: 'ivu-icon ivu-icon-ios-checkmark-circle-outline',
       style: { color: '#8AE65C' },
     })
   },

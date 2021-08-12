@@ -29,7 +29,7 @@ import {
   Checkbox,
   CheckboxGroup,
   Submit,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const form = createForm()
 

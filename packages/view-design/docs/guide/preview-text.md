@@ -14,23 +14,23 @@
 
 ### PreviewInputText
 
-参考 [https://element.eleme.io/#/zh-CN/component/input](https://element.eleme.io/#/zh-CN/component/input)
+参考 [https://www.iviewui.com/components/input](https://www.iviewui.com/components/input)
 
 ### PreviewSelectText
 
-参考 [https://element.eleme.io/#/zh-CN/component/select](https://element.eleme.io/#/zh-CN/component/select)
+参考 [https://www.iviewui.com/components/select](https://www.iviewui.com/components/select)
 
 ### PreviewCascaderText
 
-参考 [https://element.eleme.io/#/zh-CN/component/cascader](https://element.eleme.io/#/zh-CN/component/cascader)
+参考 [https://www.iviewui.com/components/cascader](https://www.iviewui.com/components/cascader)
 
 ### PreviewDatePickerText
 
-参考 [https://element.eleme.io/#/zh-CN/component/date-picker](https://element.eleme.io/#/zh-CN/component/date-picker)
+参考 [https://www.iviewui.com/components/date-picker](https://www.iviewui.com/components/date-picker)
 
 ### PreviewTimePickerText
 
-参考 [https://element.eleme.io/#/zh-CN/component/time-picker](https://element.eleme.io/#/zh-CN/component/time-picker)
+参考 [https://www.iviewui.com/components/time-picker](https://www.iviewui.com/components/time-picker)
 
 ### PreviewText
 

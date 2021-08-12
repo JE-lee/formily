@@ -32,7 +32,9 @@ import {
   FormButtonGroup,
   FormItem,
   Input,
-} from '@formily/element'
+} from '@formily/view-design'
+
+console.log('Rest', Reset)
 
 const fields = createSchemaField({
   components: {

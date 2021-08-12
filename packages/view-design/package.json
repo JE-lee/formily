@@ -1,5 +1,5 @@
 {
-  "name": "@formily/view-desgin",
+  "name": "@formily/view-design",
   "version": "0.0.1",
   "license": "MIT",
   "main": "lib",
@@ -21,7 +21,8 @@
   ],
   "scripts": {
     "start": "vuepress dev docs",
-    "build": "rimraf -rf lib esm dist && npm run create:style && npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:style",
+    "build": "rimraf -rf lib esm dist && npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:style",
+    "build:1": "rimraf -rf lib esm dist && npm run create:style && npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:style",
     "create:style": "ts-node create-style",
     "build:style": "ts-node build-style",
     "build:cjs": "tsc --declaration",

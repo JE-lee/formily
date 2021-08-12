@@ -16,8 +16,8 @@ import {
   Upload,
   Submit,
   FormButtonGroup,
-} from '@formily/element'
-import { Button } from 'element-ui'
+} from '@formily/view-design'
+import { Button } from 'view-design'
 
 const UploadButton = {
   functional: true,
@@ -40,17 +40,17 @@ const schema = {
       },
       required: true,
     },
-    card: {
-      type: 'array',
-      title: '卡片上传',
-      'x-decorator': 'FormItem',
-      'x-component': 'Upload',
-      'x-component-props': {
-        listType: 'picture-card',
-        action: 'https://formily-vue.free.beeceptor.com/file',
-      },
-      required: true,
-    },
+    // card: {
+    //   type: 'array',
+    //   title: '卡片上传',
+    //   'x-decorator': 'FormItem',
+    //   'x-component': 'Upload',
+    //   'x-component-props': {
+    //     listType: 'picture-card',
+    //     action: 'https://formily-vue.free.beeceptor.com/file',
+    //   },
+    //   required: true,
+    // },
     drag: {
       type: 'array',
       title: '拖拽上传',
@@ -59,7 +59,7 @@ const schema = {
       'x-component-props': {
         action: 'https://formily-vue.free.beeceptor.com/file',
         textContent: '将文件拖到此处，或者点击上传',
-        drag: true,
+        type: 'drag',
       },
       required: true,
     },

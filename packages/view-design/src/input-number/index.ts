@@ -1,21 +1,23 @@
 import { getComponentByTag } from '../__builtins__/shared'
 import { connect, mapProps, mapReadPretty } from '@formily/vue'
 
-import type { InputNumber as _ElInputNumberProps } from 'element-ui'
-import { InputNumber as ElInputNumber } from 'element-ui'
+import type { InputNumber as _IvuInputNumberProps } from 'view-design'
+import { InputNumber as IvuInputNumber } from 'view-design'
 import { PreviewInputText } from '../preview-text'
 
-export type InputNumberProps = _ElInputNumberProps
+export type InputNumberProps = _IvuInputNumberProps
 
-const TransformElInputNumber = getComponentByTag<InputNumberProps>(
-  ElInputNumber,
+const TransformIvuInputNumber = getComponentByTag<InputNumberProps>(
+  IvuInputNumber,
   {
-    change: 'input',
+    change: 'on-change',
+    focus: 'on-focus',
+    blur: 'on-blur',
   }
 )
 
 export const InputNumber = connect(
-  TransformElInputNumber,
+  TransformIvuInputNumber,
   mapProps({ readOnly: 'readonly' }, (props) => {
     let controlsPosition = 'right'
     if (props.controlsPosition) {

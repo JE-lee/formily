@@ -1,14 +1,14 @@
 import { connect, mapProps, h, mapReadPretty } from '@formily/vue'
 import { defineComponent } from '@vue/composition-api'
 import { PreviewSelectText } from '../preview-text'
-
 import type {
-  Select as ElSelectProps,
+  Select as IvuSelectProps,
   Option as ElOptionProps,
-} from 'element-ui'
-import { Select as ElSelect, Option as ElOption } from 'element-ui'
+} from 'view-design'
+import { Select as IvuSelect } from 'view-design'
+import { getComponentByTag } from '../__builtins__/shared'
 
-export type SelectProps = ElSelectProps & {
+export type SelectProps = IvuSelectProps & {
   options?: Array<ElOptionProps | string>
 }
 
@@ -25,18 +25,18 @@ const SelectOption = defineComponent<SelectProps>({
                 options.map((option) => {
                   if (typeof option === 'string') {
                     return h(
-                      ElOption,
+                      'i-option',
                       { props: { label: option, value: option } },
                       {}
                     )
                   } else {
-                    return h(ElOption, { props: option }, {})
+                    return h('i-option', { props: option }, {})
                   }
                 }),
             }
           : slots
       return h(
-        ElSelect,
+        IvuSelect,
         {
           attrs: {
             ...attrs,
@@ -49,8 +49,17 @@ const SelectOption = defineComponent<SelectProps>({
   },
 })
 
-export const Select = connect(
+const TransformIviewEvent = getComponentByTag<typeof SelectOption>(
   SelectOption,
+  {
+    change: 'on-change',
+    focus: 'on-focus',
+    blur: 'on-blur',
+  }
+)
+
+export const Select = connect(
+  TransformIviewEvent,
   mapProps({ dataSource: 'options', loading: true }),
   mapReadPretty(PreviewSelectText)
 )

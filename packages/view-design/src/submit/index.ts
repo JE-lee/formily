@@ -3,8 +3,8 @@ import { IFormFeedback } from '@formily/core'
 import { observer } from '@formily/reactive-vue'
 import { defineComponent } from '@vue/composition-api'
 
-import type { Button as ElButtonProps } from 'element-ui'
-import { Button as ElButton } from 'element-ui'
+import type { Button as ElButtonProps } from 'view-design'
+import { Button as ElButton } from 'view-design'
 
 export interface ISubmitProps extends ElButtonProps {
   onClick?: (e: MouseEvent) => any
@@ -33,7 +33,7 @@ export const Submit = observer(
           ElButton,
           {
             attrs: {
-              nativeType: listeners?.submit ? 'button' : 'submit',
+              'html-type': listeners?.submit ? 'button' : 'submit',
               type: 'primary',
               ...attrs,
               loading:

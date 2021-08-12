@@ -77,7 +77,7 @@ import {
   DatePicker,
   Switch,
   InputNumber,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const form = createForm()
 const fields = createSchemaField({

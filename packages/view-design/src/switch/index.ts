@@ -1,8 +1,18 @@
 import { connect, mapProps } from '@formily/vue'
 
-import type { Switch as ElSwitchProps } from 'element-ui'
-import { Switch as ElSwitch } from 'element-ui'
+import type { Switch as IvuSwitchProps } from 'view-design'
+import { Switch as IvuSwitch } from 'view-design'
+import { getComponentByTag } from '../__builtins__/shared'
 
-export type SwitchProps = ElSwitchProps
+export type SwitchProps = IvuSwitchProps
 
-export const Switch = connect(ElSwitch, mapProps({ readOnly: 'readonly' }))
+const TransformIvuSwitch = getComponentByTag(IvuSwitch, {
+  change: 'on-change',
+  focus: 'on-focus',
+  blur: 'on-blur',
+})
+
+export const Switch = connect(
+  TransformIvuSwitch,
+  mapProps({ readOnly: 'readonly' })
+)

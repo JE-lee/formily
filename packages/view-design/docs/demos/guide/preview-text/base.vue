@@ -62,7 +62,7 @@ import {
   PreviewCascaderText,
   PreviewDatePickerText,
   PreviewTimePickerText,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const fields = createSchemaField({
   components: {

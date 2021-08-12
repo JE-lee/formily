@@ -48,11 +48,11 @@ import {
   FormItem,
   FormButtonGroup,
   Submit,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const form = createForm()
 const fields = createSchemaField({ components: { Input, Select, FormItem } })
-
+window.form = form
 export default {
   components: { FormButtonGroup, Submit, Form, ...fields },
   data() {

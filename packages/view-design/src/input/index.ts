@@ -1,17 +1,19 @@
 import { getComponentByTag } from '../__builtins__/shared'
 import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { PreviewInputText } from '../preview-text'
-import type { Input as ElInputProps } from 'element-ui'
-import { Input as ElInput } from 'element-ui'
+import type { Input as IvuInputProps } from 'view-design'
+import { Input as IvuInput } from 'view-design'
 
-export type InputProps = ElInputProps
+export type InputProps = IvuInputProps
 
-const TransformElInput = getComponentByTag<InputProps>(ElInput, {
-  change: 'input',
+const TransformIviewEvent = getComponentByTag<InputProps>(IvuInput, {
+  change: 'on-change',
+  focus: 'on-focus',
+  blur: 'on-blur',
 })
 
 export const Input = connect(
-  TransformElInput,
+  TransformIviewEvent,
   mapProps({ readOnly: 'readonly' }),
   mapReadPretty(PreviewInputText)
 )

@@ -107,7 +107,7 @@ import {
   Switch,
   InputNumber,
   RadioGroup,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const Div = {
   functional: true,

@@ -6,7 +6,7 @@
       :decorator="[FormItem]"
       :component="[DatePicker]"
     />
-    <Field
+    <!-- <Field
       name="week"
       title="周"
       :decorator="[FormItem]"
@@ -16,7 +16,7 @@
           type: 'week',
         },
       ]"
-    />
+    /> -->
     <Field
       name="month"
       title="月"
@@ -50,7 +50,7 @@
         },
       ]"
     />
-    <ArrayField
+    <!-- <ArrayField
       name="dates"
       title="多个日期"
       :decorator="[FormItem]"
@@ -60,7 +60,7 @@
           type: 'dates',
         },
       ]"
-    />
+    /> -->
     <ArrayField
       name="dateRange"
       title="日期范围"
@@ -72,7 +72,7 @@
         },
       ]"
     />
-    <ArrayField
+    <!-- <ArrayField
       name="monthRange"
       title="月范围"
       :decorator="[FormItem]"
@@ -82,7 +82,7 @@
           type: 'monthrange',
         },
       ]"
-    />
+    /> -->
     <ArrayField
       name="dateTimeRange"
       title="日期时间范围"
@@ -101,7 +101,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { Field, ArrayField } from '@formily/vue'
-import { Form, FormItem, DatePicker, Submit } from '@formily/element'
+import { Form, FormItem, DatePicker, Submit } from '@formily/view-design'
 
 const form = createForm()
 

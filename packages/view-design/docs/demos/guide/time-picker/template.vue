@@ -21,7 +21,7 @@
       :component="[
         TimePicker,
         {
-          isRange: true,
+          type: 'timerange',
           style: {
             width: '240px',
           },
@@ -35,7 +35,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
-import { FormItem, TimePicker, Submit } from '@formily/element'
+import { FormItem, TimePicker, Submit } from '@formily/view-design'
 
 const form = createForm()
 

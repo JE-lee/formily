@@ -78,8 +78,8 @@ import {
   PreviewCascaderText,
   PreviewDatePickerText,
   FormButtonGroup,
-} from '@formily/element'
-import { Button } from 'element-ui'
+} from '@formily/view-design'
+import { Button } from 'view-design'
 
 const fields = createSchemaField({
   components: {

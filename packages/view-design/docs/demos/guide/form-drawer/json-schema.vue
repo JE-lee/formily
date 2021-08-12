@@ -9,8 +9,8 @@ import {
   FormLayout,
   FormItem,
   Input,
-} from '@formily/element'
-import { Button } from 'element-ui'
+} from '@formily/view-design'
+import { Button } from 'view-design'
 import { createSchemaField } from '@formily/vue'
 const { SchemaField } = createSchemaField({
   components: {

@@ -36,7 +36,7 @@
 import { createForm, onFieldReact } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { action } from '@formily/reactive'
-import { Form, FormItem, Select, Submit, Reset } from '@formily/element'
+import { Form, FormItem, Select, Submit, Reset } from '@formily/view-design'
 
 const useAsyncDataSource = (pattern, service) => {
   onFieldReact(pattern, (field) => {

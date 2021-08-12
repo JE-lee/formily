@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import { FormDialog, FormLayout, FormItem, Input } from '@formily/element'
-import { Button } from 'element-ui'
+import { FormDialog, FormLayout, FormItem, Input } from '@formily/view-design'
+import { Button } from 'view-design'
 import { createSchemaField } from '@formily/vue'
 
 const { SchemaField } = createSchemaField({
@@ -74,9 +74,12 @@ export default {
           loading: false,
         },
         beforeClose: (done) => {
-          if (!this.dialogProps.okButtonProps.loading) {
-            done()
-          }
+          // if (!this.dialogProps.okButtonProps.loading) {
+          //   done()
+          // }
+          return !this.dialogProps.okButtonProps.loading
+            ? Promise.resolve()
+            : Promise.reject()
         },
       },
     }

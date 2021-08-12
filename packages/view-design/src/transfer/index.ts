@@ -1,8 +1,18 @@
 import { connect, mapProps } from '@formily/vue'
 
-import type { Transfer as ElTransferProps } from 'element-ui'
-import { Transfer as ElTransfer } from 'element-ui'
+import type { Transfer as IvuTransferProps } from 'view-design'
+import { Transfer as IvuTransfer } from 'view-design'
+import { getComponentByTag } from '../__builtins__/shared'
 
-export type TransferProps = ElTransferProps
+export type TransferProps = IvuTransferProps
 
-export const Transfer = connect(ElTransfer, mapProps({ dataSource: 'data' }))
+const TransformIvuTransfer = getComponentByTag<TransferProps>(IvuTransfer, {
+  change: 'on-change',
+  focus: 'on-focus',
+  blur: 'on-blur',
+})
+
+export const Transfer = connect(
+  TransformIvuTransfer,
+  mapProps({ dataSource: 'data' })
+)

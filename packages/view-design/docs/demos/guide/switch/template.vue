@@ -13,7 +13,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
-import { FormItem, Switch, Submit } from '@formily/element'
+import { FormItem, Switch, Submit } from '@formily/view-design'
 
 const form = createForm()
 

@@ -3,10 +3,10 @@ import { observer } from '@formily/reactive-vue'
 import { reaction } from '@formily/reactive'
 import { isVoidField, Field } from '@formily/core'
 import { h, useField } from '@formily/vue'
-import { Popover } from 'element-ui'
+import { Poptip as Popover } from 'view-design'
 import { stylePrefix } from '../__builtins__/configs'
 
-import type { Popover as PopoverProps } from 'element-ui'
+import type { Poptip as PopoverProps } from 'view-design'
 import { FormBaseItem, FormItemProps } from '../form-item'
 
 export type EditableProps = FormItemProps
@@ -116,8 +116,8 @@ export const Editable = observer(
                     class: [
                       `${prefixCls}-edit-btn`,
                       pattern === 'editable'
-                        ? 'el-icon-edit'
-                        : 'el-icon-chat-dot-round',
+                        ? 'ivu-icon ivu-icon-md-create'
+                        : 'ivu-icon ivu-icon-md-chatbubbles',
                     ],
                   },
                   {}
@@ -141,7 +141,10 @@ export const Editable = observer(
                 return h(
                   'i',
                   {
-                    class: [`${prefixCls}-close-btn`, 'el-icon-close'],
+                    class: [
+                      `${prefixCls}-close-btn`,
+                      'ivu-icon ivu-icon-md-close',
+                    ],
                   },
                   {}
                 )
@@ -149,7 +152,6 @@ export const Editable = observer(
             }
           )
         }
-
         return h(
           'div',
           {
@@ -219,11 +221,11 @@ export const EditablePopover = observer(
             },
           },
           {
+            content: () => [slots.default()],
             default: () => [
-              slots.default(),
               h(
                 FormBaseItem,
-                { slot: 'reference', class: [`${prefixCls}-trigger`] },
+                { slot: 'default', class: [`${prefixCls}-trigger`] },
                 {
                   default: () =>
                     h(
@@ -248,8 +250,8 @@ export const EditablePopover = observer(
                               class: [
                                 `${prefixCls}-edit-btn`,
                                 pattern === 'editable'
-                                  ? 'el-icon-edit'
-                                  : 'el-icon-chat-dot-round',
+                                  ? 'ivu-icon ivu-icon-md-create'
+                                  : 'ivu-icon ivu-icon-md-chatbubbles',
                               ],
                             },
                             {}

@@ -76,7 +76,7 @@ import {
   DatePicker,
   Editable,
   EditablePopover,
-} from '@formily/element'
+} from '@formily/view-design'
 
 export default {
   components: {

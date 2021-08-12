@@ -3,10 +3,10 @@ import { h, useForm } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
 import { defineComponent } from '@vue/composition-api'
 
-import type { Button as IElButton } from 'element-ui'
-import { Button as ElButton } from 'element-ui'
+import type { Button as IIvuButton } from 'view-design'
+import { Button as IvuButton } from 'view-design'
 
-export type ResetProps = IFieldResetOptions & IElButton
+export type ResetProps = IFieldResetOptions & IIvuButton
 
 export const Reset = observer(
   defineComponent<ResetProps>({
@@ -27,7 +27,7 @@ export const Reset = observer(
       return () => {
         const form = formRef?.value
         return h(
-          ElButton,
+          IvuButton,
           {
             attrs: context.attrs,
             on: {

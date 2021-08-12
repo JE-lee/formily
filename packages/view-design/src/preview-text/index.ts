@@ -15,7 +15,8 @@ import type { CascaderProps } from '../cascader'
 import type { DatePickerProps } from '../date-picker'
 import type { TimePickerProps } from '../time-picker'
 import { Space } from '../space'
-import { Tag } from 'element-ui'
+import { Tag } from 'view-design'
+// TODO: date-util
 import { formatDate } from 'element-ui/src/utils/date-util'
 
 const prefixCls = `${stylePrefix}-preview-text`
@@ -73,7 +74,7 @@ export const PreviewSelectText = observer(
         : []
       const placeholder = usePlaceholder()
       const getSelected = () => {
-        const value = props.value
+        const value = props.value as any
         if (props.multiple) {
           return isArr(value)
             ? value.map((val) => ({ label: val, value: val }))
@@ -102,8 +103,8 @@ export const PreviewSelectText = observer(
             {
               key,
               props: {
-                type: 'info',
-                effect: 'light',
+                // type: 'border',
+                // effect: 'light',
               },
             },
             {
@@ -136,7 +137,9 @@ export const PreviewCascaderText = observer(
     setup(_props, { attrs }) {
       const fieldRef = useField<Field>()
       const field = fieldRef.value
-      const props = attrs as unknown as CascaderProps
+      // TODO:
+      // const props = attrs as unknown as CascaderProps
+      const props = attrs as any
       const dataSource: any[] = field?.dataSource?.length
         ? field.dataSource
         : props?.options?.length
@@ -179,8 +182,8 @@ export const PreviewCascaderText = observer(
             {
               key,
               props: {
-                type: 'info',
-                effect: 'light',
+                // type: 'info',
+                // effect: 'light',
               },
             },
             {
@@ -244,7 +247,9 @@ export const PreviewTimePickerText = defineComponent<TimePickerProps>({
   name: 'PreviewTimePickerText',
   props: [],
   setup(_props, { attrs }) {
-    const props = attrs as unknown as TimePickerProps
+    // TODO:
+    // const props = attrs as unknown as TimePickerProps
+    const props = attrs as any
     const format = props.pickerOptions?.format || 'HH:mm:ss'
     const placeholder = usePlaceholder()
     const getLabels = () => {

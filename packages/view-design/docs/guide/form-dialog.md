@@ -69,8 +69,6 @@ type IFormDialogProps = DialogProps & {
 }
 ```
 
-`DialogProps`类型定义参考 [Element-UI Dialog API](https://element.eleme.io/#/zh-CN/component/dialog#attributes)
-
 ### FormDialogFooter
 
 无属性，只接收子节点

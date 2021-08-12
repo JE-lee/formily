@@ -1,7 +1,7 @@
 ---
 home: true
-heroText: FORMILY ELEMENT
-tagline: 基于 Element UI 封装的Formily2.x组件体系
+heroText: FORMILY VIEW-DESIGN
+tagline: 基于 view-design(iview) 封装的Formily2.x组件体系
 actionText: 开发指南
 actionLink: /guide/
 features:
@@ -19,8 +19,9 @@ footer: Open-source MIT Licensed | Copyright © 2019-present
 vue2:
 
 ```bash
-$ npm install --save element-ui
-$ npm install --save @formily/core @formily/vue @vue/composition-api @formily/element
+$ npm install --save view-desgin
+$ npm install --save @formily/core @formily/vue @vue/composition-api @formily/view-design
+
 ```
 
 ## 快速开始

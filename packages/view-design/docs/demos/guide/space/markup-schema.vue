@@ -100,7 +100,7 @@ import {
   Space,
   FormButtonGroup,
   Submit,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const fields = createSchemaField({
   components: { FormItem, FormLayout, Input, Space },

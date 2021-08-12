@@ -1,2 +1,2 @@
-import 'element-ui/packages/theme-chalk/src/tooltip.scss'
+// import 'view-design/src/styles/components/tooltip.less'
 import './style.scss'

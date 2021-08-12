@@ -1,10 +1,8 @@
 import { h, FormProvider, Fragment } from '@formily/vue'
 import { createForm } from '@formily/core'
-import { isNum, isStr, isBool, uid } from '@formily/shared'
-import { Dialog, Button } from 'element-ui'
-import type { Dialog as DialogProps, Button as ButtonProps } from 'element-ui'
-// @ts-ignore
-import { t } from 'element-ui/src/locale'
+import { isNum, isStr, isBool } from '@formily/shared'
+import { Modal, Button } from 'view-design'
+import type { Modal as DialogProps, Button as ButtonProps } from 'view-design'
 import Vue, { Component, VNode } from 'vue'
 import { isValidElement, resolveComponent } from '../__builtins__/shared'
 import { stylePrefix } from '../__builtins__/configs'
@@ -17,7 +15,9 @@ type FormDialogContent = Component | ((props: FormDialogContentProps) => VNode)
 
 type ModalTitle = string | number | Component | VNode | (() => VNode)
 
-type IFormDialogProps = Omit<DialogProps, 'title'> & {
+type Cb = (done: () => void) => void
+
+type IFormDialogProps = Omit<DialogProps & { beforeClose: Cb }, 'title'> & {
   title?: ModalTitle
   footer?: null | Component | VNode | (() => VNode)
   cancelText?: string | Component | VNode | (() => VNode)
@@ -118,7 +118,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
           }
         },
         render() {
-          const dialogProps = this.dialogProps
+          const { onClosed, ...dialogProps } = this.dialogProps
 
           return h(
             FormProvider,
@@ -130,29 +130,37 @@ export function FormDialog(title: any, content: any): IFormDialog {
             {
               default: () =>
                 h(
-                  Dialog,
+                  Modal,
                   {
                     class: [`${prefixCls}`],
                     attrs: {
-                      visible: this.visible,
+                      value: this.visible,
                       ...dialogProps,
+                      transfer: false, // 必须
                     },
                     on: {
-                      'update:visible': (val) => {
+                      input: (val) => {
                         this.visible = val
                       },
-                      close: () => {
-                        dialogProps.onClose?.()
-                      },
+                      // close: () => {
+                      //   dialogProps.onClose?.()
+                      // },
 
-                      closed: () => {
-                        dialogProps.onClosed?.()
-                      },
-                      open: () => {
-                        dialogProps.onOpen?.()
-                      },
-                      opend: () => {
-                        dialogProps.onOpend?.()
+                      // closed: () => {
+                      //   dialogProps.onClosed?.()
+                      // },
+                      // open: () => {
+                      //   dialogProps.onOpen?.()
+                      // },
+                      // opend: () => {
+                      //   dialogProps.onOpend?.()
+                      // },
+                      'on-visible-change': (val) => {
+                        dialogProps.onVisibleChange?.(val)
+                        // 关闭
+                        if (!val) {
+                          setTimeout(() => onClosed?.(), 1000)
+                        }
                       },
                     },
                   },
@@ -214,8 +222,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
                                 {
                                   default: () =>
                                     resolveComponent(
-                                      dialogProps.cancelText ||
-                                        t('el.popconfirm.cancelButtonText')
+                                      dialogProps.cancelText || '取消'
                                     ),
                                 }
                               ),
@@ -237,8 +244,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
                                 {
                                   default: () =>
                                     resolveComponent(
-                                      dialogProps.okText ||
-                                        t('el.popconfirm.confirmButtonText')
+                                      dialogProps.okText || '确认'
                                     ),
                                 }
                               ),

@@ -18,18 +18,6 @@
 
 <dumi-previewer demoPath="guide/form-item/common" />
 
-## 无边框案例
-
-设置去除组件边框
-
-<dumi-previewer demoPath="guide/form-item/bordered-none" />
-
-## 内嵌模式案例
-
-设置表单组件为内嵌模式
-
-<dumi-previewer demoPath="guide/form-item/inset" />
-
 ## 反馈信息定制案例
 
 可通过 `feedbackIcon` 传入指定反馈的按钮

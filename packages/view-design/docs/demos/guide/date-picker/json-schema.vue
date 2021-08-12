@@ -8,7 +8,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import { Form, FormItem, DatePicker, Submit } from '@formily/element'
+import { Form, FormItem, DatePicker, Submit } from '@formily/view-design'
 
 const schema = {
   type: 'object',
@@ -19,15 +19,15 @@ const schema = {
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker',
     },
-    week: {
-      type: 'string',
-      title: '周',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        type: 'week',
-      },
-    },
+    // week: {
+    //   type: 'string',
+    //   title: '周',
+    //   'x-decorator': 'FormItem',
+    //   'x-component': 'DatePicker',
+    //   'x-component-props': {
+    //     type: 'week',
+    //   },
+    // },
     month: {
       type: 'string',
       title: '月',
@@ -55,15 +55,15 @@ const schema = {
         type: 'datetime',
       },
     },
-    dates: {
-      type: 'array',
-      title: '多个日期',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        type: 'dates',
-      },
-    },
+    // dates: {
+    //   type: 'array',
+    //   title: '多个日期',
+    //   'x-decorator': 'FormItem',
+    //   'x-component': 'DatePicker',
+    //   'x-component-props': {
+    //     type: 'dates',
+    //   },
+    // },
     dateRange: {
       type: 'string',
       title: '日期范围',
@@ -73,15 +73,15 @@ const schema = {
         type: 'daterange',
       },
     },
-    monthRange: {
-      type: 'string',
-      title: '月范围',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-component-props': {
-        type: 'monthrange',
-      },
-    },
+    // monthRange: {
+    //   type: 'string',
+    //   title: '月范围',
+    //   'x-decorator': 'FormItem',
+    //   'x-component': 'DatePicker',
+    //   'x-component-props': {
+    //     type: 'monthrange',
+    //   },
+    // },
     dateTimeRange: {
       type: 'string',
       title: '日期时间范围',

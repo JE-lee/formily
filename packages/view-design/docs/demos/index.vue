@@ -45,7 +45,7 @@
 
 <script>
 import { createForm } from '@formily/core'
-import { InputNumber, FormItem, Space } from '@formily/element'
+import { InputNumber, FormItem, Space } from '@formily/view-design'
 import { FormProvider, FormConsumer, Field } from '@formily/vue'
 
 const form = createForm()

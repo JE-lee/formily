@@ -20,7 +20,7 @@ import {
   TextArea,
   Submit,
   Space,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const { SchemaField } = createSchemaField({
   components: {

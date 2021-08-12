@@ -69,8 +69,6 @@ type IFormDrawerProps = DrawerProps & {
 }
 ```
 
-`DrawerProps`类型定义参考 [Element-UI Drawer API](https://element.eleme.io/#/zh-CN/component/drawer#attributes)
-
 ### FormDrawerFooter
 
 无属性，只接收子节点

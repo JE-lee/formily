@@ -28,17 +28,17 @@ import type { Schema } from '@formily/json-schema'
 import type {
   Table as TableProps,
   TableColumn as ElColumnProps,
-  Pagination as PaginationProps,
-} from 'element-ui'
+  Page as PaginationProps,
+} from 'view-design'
 import type { VNode, Component } from 'vue'
 import {
   Table as ElTable,
-  TableColumn as ElTableColumn,
-  Pagination,
+  // TableColumn as ElTableColumn,
+  Page,
   Select,
-  Option,
+  // Option,
   Badge,
-} from 'element-ui'
+} from 'view-design'
 import { Space } from '../space'
 
 const RecursionField = _RecursionField as unknown as Component
@@ -60,14 +60,23 @@ interface ObservableColumnSource {
   name: string
 }
 
-type ColumnProps = ElColumnProps & {
-  key: string | number
-  asterisk: boolean
-  render?: (props: {
-    row: Record<string, any>
-    column: ElColumnProps
-    $index: number
-  }) => VNode
+type Overwrite<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
+
+type ColumnProps = Overwrite<
+  ElColumnProps,
+  {
+    key: string
+    asterisk: boolean
+    render?: (props: {
+      row: Record<string, any>
+      column: ElColumnProps
+      index: number
+    }) => VNode
+  }
+>
+
+type RenderChildren = {
+  [key in string]?: (...args: any[]) => (VNode | string)[]
 }
 
 const isColumnComponent = (schema: Schema) => {
@@ -157,43 +166,43 @@ const getArrayTableColumns = (
       const { title, asterisk, ...props } = columnProps
       if (display !== 'visible') return buf
       if (!isColumnComponent(schema)) return buf
-
-      const render =
-        columnProps?.type && columnProps?.type !== 'default'
-          ? undefined
-          : (props: {
-              row: Record<string, any>
-              column: ElColumnProps
-              $index: number
-            }): VNode => {
-              // let index = props.$index
-              const index = reactiveDataSource.value.indexOf(props.row)
-
-              const children = h(
-                ArrayBaseItem,
-                { props: { index }, key: `${key}${index}` },
-                {
-                  default: () =>
-                    h(
-                      RecursionField,
-                      {
-                        props: {
-                          schema,
-                          name: index,
-                          onlyRenderProperties: true,
-                        },
+      const render = columnProps?.type
+        ? undefined
+        : (props: {
+            row: Record<string, any>
+            column: ElColumnProps
+            index: number
+          }): VNode => {
+            // let index = props.$index
+            // const index = reactiveDataSource.value.indexOf(props.row)
+            // 因为 iview table 里面作用域插槽暴露的 row 不是原来的数据 row，无法通过 indexOf 查找
+            // 直接使用 iview 渲染的 index
+            // TODO: 分页里的 index 还有问题
+            const index = props.index
+            const children = h(
+              ArrayBaseItem,
+              { props: { index }, key: `${key}${index}` },
+              {
+                default: () =>
+                  h(
+                    RecursionField,
+                    {
+                      props: {
+                        schema,
+                        name: index,
+                        onlyRenderProperties: true,
                       },
-                      {}
-                    ),
-                }
-              )
-              return children
-            }
+                    },
+                    {}
+                  ),
+              }
+            )
+            return children
+          }
       return buf.concat({
-        label: title,
+        title,
         ...props,
-        key,
-        prop: name,
+        key: name,
         asterisk: asterisk ?? required,
         render,
       })
@@ -278,7 +287,7 @@ const StatusSelect = observer(
                 })
 
                 return h(
-                  Option,
+                  'i-option',
                   {
                     key: value,
                     props: {
@@ -321,7 +330,7 @@ const ArrayTablePagination = defineComponent<IArrayTablePaginationProps>({
     const current = ref(1)
     return () => {
       const props = attrs as unknown as IArrayTablePaginationProps
-      const pageSize = props.pageSize || 10
+      const pageSize = props['page-size'] || 10
       const dataSource = props.dataSource || []
       const startIndex = (current.value - 1) * pageSize
       const endIndex = startIndex + pageSize - 1
@@ -364,18 +373,18 @@ const ArrayTablePagination = defineComponent<IArrayTablePaginationProps>({
                       {}
                     ),
                     h(
-                      Pagination,
+                      Page,
                       {
                         props: {
                           background: true,
                           layout: 'prev, pager, next',
                           ...props,
-                          pageSize,
-                          pageCount: totalPage,
-                          currentPage: current.value,
+                          'page-size': pageSize,
+                          total,
+                          current: current.value,
                         },
                         on: {
-                          'current-change': (val: number) => {
+                          'update:current': (val: number) => {
                             current.value = val
                           },
                         },
@@ -436,16 +445,12 @@ export const ArrayTable = observer(
         const pagination = props.pagination
         const sources = getArrayTableSources(fieldRef, schemaRef)
         const columns = getArrayTableColumns(reactiveDataSource, sources)
-
         const renderColumns = () =>
-          columns.map(({ key, render, asterisk, ...props }) => {
-            const children = {} as Record<string, any>
-            if (render) {
-              children.default = render
-            }
+          columns.map(({ render, asterisk, ...props }) => {
+            let renderHeader: any = undefined
             if (asterisk) {
-              children.header = ({ column }: { column: ElColumnProps }) =>
-                h(
+              renderHeader = (_, { column }: { column: ElColumnProps }) => {
+                return h(
                   'span',
                   {},
                   {
@@ -455,20 +460,25 @@ export const ArrayTable = observer(
                         { class: `${prefixCls}-asterisk` },
                         { default: () => ['*'] }
                       ),
-                      column.label,
+                      column.title,
                     ],
                   }
                 )
+              }
             }
-            return h(
-              ElTableColumn,
-              {
-                key,
-                props,
+            const slot = props.slot || props.title
+            return {
+              h: render,
+              col: {
+                ...props,
+                slot,
+                renderHeader,
               },
-              children
-            )
+              slot,
+              asterisk, // * 号
+            }
           })
+
         const renderStateManager = () =>
           sources.map((column, key) => {
             //专门用来承接对Column的状态管理
@@ -488,6 +498,13 @@ export const ArrayTable = observer(
           })
 
         const renderTable = (dataSource?: any[], pager?: () => VNode) => {
+          const columns = renderColumns()
+          const iviewTableColumns = columns.map((item) => item.col)
+          const tableChildren = columns.reduce((childrens, cur) => {
+            childrens[cur.slot] = (props) => [cur.h(props)]
+            return childrens
+          }, {} as RenderChildren)
+
           return h(
             'div',
             { class: prefixCls },
@@ -502,14 +519,13 @@ export const ArrayTable = observer(
                         ElTable,
                         {
                           props: {
-                            rowKey: defaultRowKey,
+                            // rowKey: defaultRowKey,
                             ...attrs,
                             data: dataSource,
+                            columns: iviewTableColumns,
                           },
                         },
-                        {
-                          default: renderColumns,
-                        }
+                        tableChildren
                       ),
                       pager?.(),
                       renderStateManager(),

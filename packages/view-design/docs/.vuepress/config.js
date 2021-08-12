@@ -7,7 +7,7 @@ const componentFiles = utils
   .filter((item) => !['el-form', 'el-form-item', 'index'].includes(item))
 
 module.exports = {
-  title: 'Formily Element',
+  title: 'Formily View-design',
   dest: './doc-site',
   theme: '@vuepress-dumi/dumi',
   head: [
@@ -22,7 +22,7 @@ module.exports = {
       'link',
       {
         rel: 'stylesheet',
-        href: 'https://unpkg.com/element-ui/lib/theme-chalk/index.css',
+        href: 'https://cdn.jsdelivr.net/npm/view-design@4.6.1/dist/styles/iview.css',
       },
     ],
   ],
@@ -64,7 +64,10 @@ module.exports = {
     return {
       resolve: {
         alias: {
-          '@formily/element': path.resolve(__dirname, '../../src'),
+          '@formily/view-design': path.resolve(
+            __dirname,
+            '../../../view-design/src'
+          ),
         },
       },
     }

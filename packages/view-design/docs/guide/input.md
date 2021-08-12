@@ -16,4 +16,4 @@
 
 ## API
 
-参考 [https://element.eleme.io/#/zh-CN/component/input](https://element.eleme.io/#/zh-CN/component/input)
+参考 [https://www.iviewui.com/components/input](https://www.iviewui.com/components/input)

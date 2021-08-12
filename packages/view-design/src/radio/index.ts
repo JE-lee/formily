@@ -3,23 +3,25 @@ import { defineComponent } from '@vue/composition-api'
 import { getComponentByTag } from '../__builtins__/shared'
 import { PreviewSelectText } from '../preview-text'
 import type {
-  Radio as ElRadioProps,
-  RadioGroup as ElRadioGroupProps,
-} from 'element-ui'
-import { Radio as ElRadio, RadioGroup as ElRadioGroup } from 'element-ui'
+  Radio as IvuProps,
+  RadioGroup as IvuGroupProps,
+} from 'view-design'
+import { Radio as Ivu, RadioGroup as IvuGroup } from 'view-design'
 
-export type RadioGroupProps = ElRadioGroupProps & {
+export type RadioGroupProps = IvuGroupProps & {
   value: any
-  options?: (Omit<ElRadioProps, 'value'> & {
-    value: ElRadioProps['label']
+  options?: (Omit<IvuProps, 'value'> & {
+    value: IvuProps['label']
     label: string
   })[]
 }
 
-export type RadioProps = ElRadioProps
+export type RadioProps = IvuProps
 
-const TransformElRadioGroup = getComponentByTag(ElRadioGroup, {
-  change: 'input',
+const TransformIvuGroup = getComponentByTag(IvuGroup, {
+  change: 'on-change',
+  focus: 'on-focus',
+  blur: 'on-blur',
 })
 
 const RadioGroupOption = defineComponent<RadioGroupProps>({
@@ -40,13 +42,13 @@ const RadioGroupOption = defineComponent<RadioGroupProps>({
                 options.map((option) => {
                   if (typeof option === 'string') {
                     return h(
-                      ElRadio,
+                      Ivu,
                       { props: { label: option } },
                       { default: () => [option] }
                     )
                   } else {
                     return h(
-                      ElRadio,
+                      Ivu,
                       {
                         props: {
                           ...option,
@@ -61,7 +63,7 @@ const RadioGroupOption = defineComponent<RadioGroupProps>({
             }
           : slots
       return h(
-        TransformElRadioGroup,
+        TransformIvuGroup,
         {
           attrs: {
             ...attrs,
@@ -79,4 +81,4 @@ export const RadioGroup = connect(
   mapProps({ dataSource: 'options' }),
   mapReadPretty(PreviewSelectText)
 )
-export const Radio = ElRadio
+export const Radio = Ivu

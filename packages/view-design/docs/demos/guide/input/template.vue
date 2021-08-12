@@ -19,7 +19,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider, Field } from '@formily/vue'
-import { FormItem, Input, TextArea, Submit } from '@formily/element'
+import { FormItem, Input, TextArea, Submit } from '@formily/view-design'
 
 const form = createForm()
 

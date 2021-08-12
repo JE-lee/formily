@@ -16,4 +16,4 @@
 
 ## API
 
-参考 [https://element.eleme.io/#/zh-CN/component/cascader](https://element.eleme.io/#/zh-CN/component/cascader)
+参考 [https://www.iviewui.com/components/cascader](https://www.iviewui.com/components/cascader)

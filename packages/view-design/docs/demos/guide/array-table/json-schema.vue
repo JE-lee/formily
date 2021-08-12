@@ -21,7 +21,7 @@ import {
   ArrayTableSortHandle,
   Input,
   Editable,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const fields = createSchemaField({
   components: {
@@ -111,7 +111,6 @@ export default {
                   title: 'Operations',
                   prop: 'operations',
                   width: 200,
-                  fixed: 'right',
                 },
                 properties: {
                   item: {

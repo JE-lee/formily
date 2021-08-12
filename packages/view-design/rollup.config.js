@@ -3,7 +3,7 @@ import baseConfig, {
 } from '../../scripts/rollup.base.js'
 
 export default baseConfig(
-  'formily.element',
-  'Formily.Element',
+  'formily.view-design',
+  'Formily.ViewDesign',
   removeImportStyleFromInputFilePlugin()
 )

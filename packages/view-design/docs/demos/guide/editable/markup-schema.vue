@@ -3,13 +3,13 @@
     <SchemaField>
       <SchemaStringField
         name="date"
-        title="日期"
+        title="日期1"
         x-decorator="Editable"
         x-component="DatePicker"
       />
       <SchemaStringField
         name="input"
-        title="输入框"
+        title="输入框1"
         x-decorator="Editable"
         x-component="Input"
       />
@@ -25,13 +25,13 @@
       >
         <SchemaStringField
           name="date2"
-          title="日期"
+          title="日期1-1"
           x-decorator="FormItem"
           x-component="DatePicker"
         />
         <SchemaStringField
           name="input2"
-          title="输入框"
+          title="输入框1-2"
           x-decorator="FormItem"
           x-component="Input"
         />
@@ -48,13 +48,13 @@
       >
         <SchemaStringField
           name="date"
-          title="日期"
+          title="日期2-1"
           x-decorator="FormItem"
           x-component="DatePicker"
         />
         <SchemaStringField
           name="input"
-          title="输入框"
+          title="输入框2-2"
           x-decorator="FormItem"
           x-component="Input"
         />
@@ -77,8 +77,8 @@ import {
   DatePicker,
   Editable,
   EditablePopover,
-} from '@formily/element'
-import { Button } from 'element-ui'
+} from '@formily/view-design'
+import { Button } from 'view-design'
 
 const SchemaField = createSchemaField({
   components: {

@@ -13,7 +13,7 @@
       ]"
       required
     />
-    <ArrayField
+    <!-- <ArrayField
       name="upload2"
       title="卡片上传"
       :decorator="[FormItem]"
@@ -25,7 +25,7 @@
         },
       ]"
       required
-    />
+    /> -->
     <ArrayField
       name="upload3"
       title="拖拽上传"
@@ -35,7 +35,7 @@
         {
           action: 'https://formily-vue.free.beeceptor.com/file',
           textContent: '将文件拖到此处，或者点击上传',
-          drag: true,
+          type: 'drag',
         },
       ]"
       required
@@ -68,8 +68,8 @@ import {
   Upload,
   Submit,
   FormButtonGroup,
-} from '@formily/element'
-import { Button } from 'element-ui'
+} from '@formily/view-design'
+import { Button } from 'view-design'
 
 const UploadButton = {
   functional: true,

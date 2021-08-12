@@ -22,7 +22,7 @@
 <script>
 import { createForm, onFieldReact } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import { Form, FormItem, Cascader, Submit } from '@formily/element'
+import { Form, FormItem, Cascader, Submit } from '@formily/view-design'
 import { action } from '@formily/reactive'
 import axios from 'axios'
 
@@ -39,11 +39,7 @@ const transformAddress = (data = {}) => {
     return buf.concat({
       label: name,
       value: code,
-      children: _cities.length
-        ? _cities
-        : _districts.length
-        ? _districts
-        : undefined,
+      children: _cities.length ? _cities : _districts.length ? _districts : [],
     })
   }, [])
 }

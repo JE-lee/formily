@@ -7,7 +7,7 @@
         x-decorator="FormItem"
         x-component="DatePicker"
       />
-      <SchemaStringField
+      <!-- <SchemaStringField
         name="week"
         title="周"
         x-decorator="FormItem"
@@ -15,7 +15,7 @@
         :x-component-props="{
           type: 'week',
         }"
-      />
+      /> -->
       <SchemaStringField
         name="month"
         title="月"
@@ -43,7 +43,7 @@
           type: 'datetime',
         }"
       />
-      <SchemaArrayField
+      <!-- <SchemaArrayField
         name="dates"
         title="多个日期"
         x-decorator="FormItem"
@@ -51,7 +51,7 @@
         :x-component-props="{
           type: 'dates',
         }"
-      />
+      /> -->
       <SchemaArrayField
         name="dateRange"
         title="日期范围"
@@ -61,7 +61,7 @@
           type: 'daterange',
         }"
       />
-      <SchemaArrayField
+      <!-- <SchemaArrayField
         name="monthRange"
         title="月范围"
         x-decorator="FormItem"
@@ -69,7 +69,7 @@
         :x-component-props="{
           type: 'monthrange',
         }"
-      />
+      /> -->
       <SchemaArrayField
         name="dateTimeRange"
         title="日期时间范围"
@@ -87,7 +87,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import { Form, FormItem, DatePicker, Submit } from '@formily/element'
+import { Form, FormItem, DatePicker, Submit } from '@formily/view-design'
 
 const form = createForm()
 const fields = createSchemaField({

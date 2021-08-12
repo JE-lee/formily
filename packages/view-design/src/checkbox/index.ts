@@ -1,16 +1,17 @@
 import { connect, h } from '@formily/vue'
 import { defineComponent } from '@vue/composition-api'
 
-import type { Checkbox as _ElCheckboxProps } from 'element-ui'
-import { Checkbox as ElCheckbox } from 'element-ui'
+import type { Checkbox as _IvuCheckboxProps } from 'view-design'
+import { Checkbox as IvuCheckbox } from 'view-design'
+import { getComponentByTag } from '../__builtins__/shared'
 
-type ElCheckboxProps = Omit<_ElCheckboxProps, 'value'> & {
-  value: ElCheckboxProps['label']
+type IvuCheckboxProps = Omit<_IvuCheckboxProps, 'value'> & {
+  value: IvuCheckboxProps['label']
 }
 
-export interface CheckboxProps extends ElCheckboxProps {
-  option: Omit<_ElCheckboxProps, 'value'> & {
-    value: ElCheckboxProps['label']
+export interface CheckboxProps extends IvuCheckboxProps {
+  option: Omit<_IvuCheckboxProps, 'value'> & {
+    value: IvuCheckboxProps['label']
     label: string
   }
 }
@@ -31,13 +32,13 @@ const CheckboxOption = defineComponent<CheckboxProps>({
         const children = option.label
           ? { default: () => [option.label] }
           : slots
-        const newProps = {} as Partial<ElCheckboxProps>
+        const newProps = {} as Partial<IvuCheckboxProps>
         Object.assign(newProps, option)
         newProps.label = option.value
         delete newProps.value
 
         return h(
-          ElCheckbox,
+          IvuCheckbox,
           {
             attrs: {
               ...newProps,
@@ -48,7 +49,7 @@ const CheckboxOption = defineComponent<CheckboxProps>({
       }
 
       return h(
-        ElCheckbox,
+        IvuCheckbox,
         {
           attrs: {
             ...props,
@@ -61,4 +62,10 @@ const CheckboxOption = defineComponent<CheckboxProps>({
   },
 })
 
-export const Checkbox = connect(CheckboxOption)
+const TransformCheckboxOption = getComponentByTag(CheckboxOption, {
+  change: 'on-change',
+  focus: 'on-focus',
+  blur: 'on-blur',
+})
+
+export const Checkbox = connect(TransformCheckboxOption)

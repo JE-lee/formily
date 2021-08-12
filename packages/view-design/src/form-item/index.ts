@@ -16,7 +16,7 @@ import { useFormLayout } from '../form-layout'
 import { resolveComponent } from '../__builtins__/shared'
 import { stylePrefix } from '../__builtins__/configs'
 import { Component } from 'vue'
-import { Tooltip } from 'element-ui'
+import { Tooltip } from 'view-design'
 import ResizeObserver from 'resize-observer-polyfill'
 
 export type FormItemProps = {
@@ -100,9 +100,10 @@ const useOverflow = (containerRef: Ref<HTMLElement>) => {
 }
 
 const ICON_MAP = {
-  error: () => h('i', { class: 'el-icon-circle-close' }, {}),
-  success: () => h('i', { class: 'el-icon-circle-check' }, {}),
-  warning: () => h('i', { class: 'el-icon-warning-outline' }, {}),
+  error: () => h('i', { class: 'ivu-icon ivu-icon-ios-close-circle' }, {}),
+  success: () =>
+    h('i', { class: 'ivu-icon ivu-icon-ios-checkmark-circle-outline' }, {}),
+  warning: () => h('i', { class: 'ivu-icon ivu-icon-ios-alert-outline' }, {}),
 }
 
 export const FormBaseItem = defineComponent<FormItemProps>({
@@ -205,7 +206,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
       const formatChildren =
         feedbackLayout === 'popover'
           ? h(
-              'el-popover',
+              'poptip',
               {
                 props: {
                   disabled: !feedbackText,
@@ -213,9 +214,9 @@ export const FormBaseItem = defineComponent<FormItemProps>({
                 },
               },
               {
-                reference: () =>
+                default: () =>
                   h('div', {}, { default: () => slots.default?.() }),
-                default: () => [
+                content: () => [
                   h(
                     'div',
                     {
@@ -310,7 +311,11 @@ export const FormBaseItem = defineComponent<FormItemProps>({
                   },
                   {
                     default: () => [
-                      h('i', { class: 'el-icon-info' }, {}),
+                      h(
+                        'i',
+                        { class: 'ivu-icon ivu-icon-md-information-circle' },
+                        {}
+                      ),
                       h(
                         'div',
                         {

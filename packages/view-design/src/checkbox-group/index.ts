@@ -3,18 +3,20 @@ import { getComponentByTag } from '../__builtins__/shared'
 import { Checkbox } from '../checkbox'
 import { defineComponent } from '@vue/composition-api'
 
-import type { CheckboxGroup as ElCheckboxGroupProps } from 'element-ui'
+import type { CheckboxGroup as IvuCheckboxGroupProps } from 'view-design'
 import type { CheckboxProps } from '../checkbox'
-import { CheckboxGroup as ElCheckboxGroup } from 'element-ui'
+import { CheckboxGroup as IvuCheckboxGroup } from 'view-design'
 import { PreviewSelectText } from '../preview-text'
 
-export type CheckboxGroupProps = ElCheckboxGroupProps & {
+export type CheckboxGroupProps = IvuCheckboxGroupProps & {
   value: any[]
   options?: Array<CheckboxProps | string>
 }
 
-const TransformElCheckboxGroup = getComponentByTag(ElCheckboxGroup, {
-  change: 'input',
+const TransformIvuCheckboxGroup = getComponentByTag(IvuCheckboxGroup, {
+  change: 'on-change',
+  focus: 'on-focus',
+  blur: 'on-blur',
 })
 
 const CheckboxGroupOption = defineComponent<CheckboxGroupProps>({
@@ -46,7 +48,7 @@ const CheckboxGroupOption = defineComponent<CheckboxGroupProps>({
             }
           : slots
       return h(
-        TransformElCheckboxGroup,
+        TransformIvuCheckboxGroup,
         {
           attrs: {
             ...attrs,

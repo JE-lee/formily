@@ -15,7 +15,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
-import { FormItem, Switch, Submit } from '@formily/element'
+import { FormItem, Switch, Submit } from '@formily/view-design'
 
 const form = createForm()
 const fields = createSchemaField({

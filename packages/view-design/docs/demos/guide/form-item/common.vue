@@ -403,13 +403,13 @@ import {
   DatePicker,
   FormLayout,
   TimePicker,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const SuccessIcon = {
   functional: true,
   render(h) {
     return h('i', {
-      class: 'el-icon-circle-check',
+      class: 'ivu-icon ivu-icon-ios-checkmark-circle-outline',
       style: { color: '#8AE65C' },
     })
   },
@@ -421,6 +421,54 @@ const Title = {
     return h('p', context.data, context.children)
   },
 }
+
+// const DATA = [{
+//     value: 'beijing',
+//     label: '北京',
+//     children: [
+//         {
+//             value: 'gugong',
+//             label: '故宫'
+//         },
+//         {
+//             value: 'tiantan',
+//             label: '天坛'
+//         },
+//         {
+//             value: 'wangfujing',
+//             label: '王府井'
+//         }
+//     ]
+// }, {
+//     value: 'jiangsu',
+//     label: '江苏',
+//     children: [
+//         {
+//             value: 'nanjing',
+//             label: '南京',
+//             children: [
+//                 {
+//                     value: 'fuzimiao',
+//                     label: '夫子庙',
+//                 }
+//             ]
+//         },
+//         {
+//             value: 'suzhou',
+//             label: '苏州',
+//             children: [
+//                 {
+//                     value: 'zhuozhengyuan',
+//                     label: '拙政园',
+//                 },
+//                 {
+//                     value: 'shizilin',
+//                     label: '狮子林',
+//                 }
+//             ]
+//         }
+//     ],
+// }]
 
 const fields = createSchemaField({
   components: {
@@ -443,6 +491,7 @@ export default {
     return {
       form,
       SuccessIcon,
+      // DATA,
     }
   },
 }

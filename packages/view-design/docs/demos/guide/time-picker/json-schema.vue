@@ -8,7 +8,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import { Form, FormItem, TimePicker, Submit } from '@formily/element'
+import { Form, FormItem, TimePicker, Submit } from '@formily/view-design'
 
 const schema = {
   type: 'object',
@@ -29,7 +29,7 @@ const schema = {
       'x-decorator': 'FormItem',
       'x-component': 'TimePicker',
       'x-component-props': {
-        isRange: true,
+        type: 'timerange',
         style: {
           width: '240px',
         },

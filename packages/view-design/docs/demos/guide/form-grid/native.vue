@@ -130,7 +130,7 @@
 </template>
 
 <script>
-import { FormGrid, FormGridColumn } from '@formily/element'
+import { FormGrid, FormGridColumn } from '@formily/view-design'
 
 const Cell = {
   functional: true,

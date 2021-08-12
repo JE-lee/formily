@@ -18,7 +18,7 @@ import {
   DatePicker,
   Editable,
   EditablePopover,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const { SchemaField } = createSchemaField({
   components: {

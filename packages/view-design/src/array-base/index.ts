@@ -12,8 +12,8 @@ import { isValid, uid } from '@formily/shared'
 import { ArrayField } from '@formily/core'
 import { stylePrefix } from '../__builtins__/configs'
 
-import type { Button as ButtonProps } from 'element-ui'
-import { Button } from 'element-ui'
+import type { Button as ButtonProps } from 'view-design'
+import { Button } from 'view-design'
 import type { Schema } from '@formily/json-schema'
 import { HandleDirective } from 'vue-slicksort'
 
@@ -126,7 +126,7 @@ export const ArrayBaseSortHandle = defineComponent({
           directives: [{ name: 'handle' }],
           class: [`${prefixCls}-sort-handle`],
           attrs: {
-            size: 'mini',
+            size: 'small',
             type: 'text',
             icon: 'el-icon-rank',
             ...attrs,
@@ -149,7 +149,7 @@ export const ArrayBaseIndex = defineComponent({
           attrs,
         },
         {
-          default: () => [`#${index.value + 1}.`],
+          default: () => [`#${index.value + 1}`],
         }
       )
     }
@@ -171,8 +171,8 @@ export const ArrayBaseAddition = defineComponent({
         {
           class: `${prefixCls}-addition`,
           attrs: {
-            type: 'ghost',
-            icon: 'qax-icon-Alone-Plus',
+            type: 'default',
+            icon: 'md-add',
             ...props,
           },
           on: {
@@ -221,8 +221,8 @@ export const ArrayBaseRemove = defineComponent<
           class: `${prefixCls}-remove`,
           attrs: {
             type: 'text',
-            size: 'mini',
-            icon: 'el-icon-delete',
+            size: 'small',
+            icon: 'md-trash',
             ...attrs,
           },
           on: {
@@ -262,9 +262,9 @@ export const ArrayBaseMoveDown = defineComponent<
         {
           class: `${prefixCls}-move-down`,
           attrs: {
-            size: 'mini',
+            size: 'small',
             type: 'text',
-            icon: 'el-icon-arrow-down',
+            icon: 'md-arrow-down',
             ...attrs,
           },
           on: {
@@ -304,9 +304,9 @@ export const ArrayBaseMoveUp = defineComponent<
         {
           class: `${prefixCls}-move-up`,
           attrs: {
-            size: 'mini',
+            size: 'small',
             type: 'text',
-            icon: 'el-icon-arrow-up',
+            icon: 'md-arrow-up',
             ...attrs,
           },
           on: {

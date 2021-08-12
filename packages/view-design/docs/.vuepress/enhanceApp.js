@@ -1,10 +1,12 @@
 import pageComponents from '@internal/page-components'
-import Element from 'element-ui'
-import '@formily/element/style.ts'
+import iview from 'view-design'
+import Vue from 'vue'
+import '@formily/view-design/style.ts'
+
+Vue.use(iview)
 
 export default ({ Vue }) => {
   for (const [name, component] of Object.entries(pageComponents)) {
     Vue.component(name, component)
   }
-  Vue.use(Element, { size: 'small' })
 }

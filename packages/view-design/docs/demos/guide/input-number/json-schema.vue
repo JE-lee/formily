@@ -8,7 +8,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
-import { FormItem, InputNumber, Submit } from '@formily/element'
+import { FormItem, InputNumber, Submit } from '@formily/view-design'
 
 const schema = {
   type: 'object',

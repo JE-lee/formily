@@ -1,9 +1,8 @@
 import { h, FormProvider, Fragment } from '@formily/vue'
 import { createForm } from '@formily/core'
 import { isNum, isStr, isBool, isFn } from '@formily/shared'
-import { Drawer, Button } from 'element-ui'
-import type { Drawer as DrawerProps, Button as ButtonProps } from 'element-ui'
-// @ts-ignore
+import { Drawer, Button } from 'view-design'
+import type { Drawer as DrawerProps, Button as ButtonProps } from 'view-design'
 import { t } from 'element-ui/src/locale'
 import Vue, { Component, VNode } from 'vue'
 import { isValidElement, resolveComponent } from '../__builtins__/shared'
@@ -17,7 +16,9 @@ type FormDrawerContent = Component | ((props: FormDrawerContentProps) => VNode)
 
 type ModalTitle = string | number | Component | VNode | (() => VNode)
 
-type IFormDrawerProps = Omit<DrawerProps, 'title'> & {
+type Cb = (done: () => void) => void
+
+type IFormDrawerProps = Omit<DrawerProps & { beforeClose: Cb }, 'title'> & {
   title?: ModalTitle
   footer?: null | Component | VNode | (() => VNode)
   cancelText?: string | Component | VNode | (() => VNode)
@@ -117,7 +118,7 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
           }
         },
         render() {
-          const drawerProps = this.drawerProps
+          const { onClosed, ...drawerProps } = this.drawerProps
 
           return h(
             FormProvider,
@@ -133,25 +134,33 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                   {
                     class: [`${prefixCls}`],
                     attrs: {
-                      visible: this.visible,
+                      value: this.visible,
                       ...drawerProps,
+                      transfer: false, // required
                     },
                     on: {
-                      'update:visible': (val) => {
+                      input: (val) => {
                         this.visible = val
                       },
-                      close: () => {
-                        drawerProps.onClose?.()
-                      },
+                      // close: () => {
+                      //   drawerProps.onClose?.()
+                      // },
 
-                      closed: () => {
-                        drawerProps.onClosed?.()
-                      },
-                      open: () => {
-                        drawerProps.onOpen?.()
-                      },
-                      opend: () => {
-                        drawerProps.onOpend?.()
+                      // closed: () => {
+                      //   drawerProps.onClosed?.()
+                      // },
+                      // open: () => {
+                      //   drawerProps.onOpen?.()
+                      // },
+                      // opend: () => {
+                      //   drawerProps.onOpend?.()
+                      // },
+                      'on-visible-change': (val) => {
+                        drawerProps.onVisibleChange?.(val)
+                        // 关闭
+                        if (!val) {
+                          setTimeout(() => onClosed?.(), 1000)
+                        }
                       },
                     },
                   },

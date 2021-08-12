@@ -104,7 +104,7 @@ import {
   Submit,
   Space,
   FormButtonGroup,
-} from '@formily/element'
+} from '@formily/view-design'
 
 const form = createForm()
 

@@ -1,16 +1,16 @@
 import { Input } from '../input'
 import { connect, mapProps, mapReadPretty } from '@formily/vue'
 import { PreviewInputText } from '../preview-text'
-import type { Input as ElInputProps } from 'element-ui'
+import type { Input as IvuInputProps } from 'view-design'
 
-export type PasswordProps = ElInputProps
+export type PasswordProps = IvuInputProps
 
 export const Password = connect(
   Input,
   mapProps((props) => {
     return {
       ...props,
-      showPassword: true,
+      type: 'password',
     }
   }),
   mapReadPretty(PreviewInputText)

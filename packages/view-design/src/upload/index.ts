@@ -2,14 +2,20 @@ import { Field } from '@formily/core'
 import { defineComponent } from '@vue/composition-api'
 import { connect, mapProps, h, useField, Fragment } from '@formily/vue'
 
-import type {
-  ElUpload as ElUploadProps,
-  ElUploadInternalFileDetail,
-} from 'element-ui/types/upload'
+import type { Upload as IvuUploadProps } from 'view-design'
 
-import { Upload as ElUpload, Button as ElButton } from 'element-ui'
+import { Upload as IvuUpload, Button as IvuButton, Icon } from 'view-design'
 
-export type UploadProps = ElUploadProps & {
+interface IvuUploadInternalFileDetail {
+  status: 'uploading' | 'finished' | 'fail'
+  name: string
+  size: number
+  percentage: number
+  uid: number
+  showProgress: boolean
+}
+
+export type UploadProps = IvuUploadProps & {
   textContent?: String
   errorAdaptor?: (error?: ErrorEvent) => String
 }
@@ -43,9 +49,9 @@ const UploadWrapper = defineComponent<UploadProps>({
 
       const props = {
         ...attrs,
-        onChange(
-          file: ElUploadInternalFileDetail,
-          fileList: ElUploadInternalFileDetail[]
+        onSuccess(
+          file: IvuUploadInternalFileDetail,
+          fileList: IvuUploadInternalFileDetail[]
         ) {
           ;(attrs.onChange as Function)?.(file, fileList)
           setFeedBack()
@@ -53,8 +59,8 @@ const UploadWrapper = defineComponent<UploadProps>({
         },
 
         onRemove(
-          file: ElUploadInternalFileDetail,
-          fileList: ElUploadInternalFileDetail[]
+          file: IvuUploadInternalFileDetail,
+          fileList: IvuUploadInternalFileDetail[]
         ) {
           ;(attrs.onRemove as Function)?.(file, fileList)
           setFeedBack()
@@ -63,8 +69,8 @@ const UploadWrapper = defineComponent<UploadProps>({
 
         onError(
           error: ErrorEvent,
-          file: ElUploadInternalFileDetail,
-          fileList: ElUploadInternalFileDetail[]
+          file: IvuUploadInternalFileDetail,
+          fileList: IvuUploadInternalFileDetail[]
         ) {
           ;(attrs.onError as Function)?.(error, file, fileList)
 
@@ -78,8 +84,8 @@ const UploadWrapper = defineComponent<UploadProps>({
       }
       if (!slots.default) {
         children.default = () => {
-          const listType = attrs.listType
-          const drag = attrs.drag
+          // const listType = attrs.listType
+          const drag = attrs.type === 'drag'
 
           if (drag) {
             return h(
@@ -87,35 +93,50 @@ const UploadWrapper = defineComponent<UploadProps>({
               {},
               {
                 default: () => [
-                  h('i', { staticClass: 'el-icon-upload' }, {}),
                   h(
                     'div',
-                    { staticClass: 'el-upload__text' },
-                    { default: () => [curProps.textContent] }
+                    { style: 'padding: 20px 0' },
+                    {
+                      default: () => [
+                        h(
+                          Icon,
+                          {
+                            style: 'color: #3399ff',
+                            props: { size: 52, type: 'ios-cloud-upload' },
+                          },
+                          {}
+                        ),
+                        h(
+                          'p',
+                          { staticClass: 'ivu-upload__text' },
+                          { default: () => [curProps.textContent] }
+                        ),
+                      ],
+                    }
                   ),
                 ],
               }
             )
           }
 
-          if (listType === 'picture-card') {
-            return h(
-              'i',
-              {
-                staticClass: 'el-icon-plus',
-              },
-              {}
-            )
-          }
+          // if (listType === 'picture-card') {
+          //   return h(
+          //     'i',
+          //     {
+          //       staticClass: 'ivu-icon ivu-icon-ios-add',
+          //     },
+          //     {}
+          //   )
+          // }
 
           return h(
-            ElButton,
-            { props: { icon: 'el-icon-upload2' } },
+            IvuButton,
+            { props: { icon: 'ios-cloud-upload-outline' } },
             { default: () => [curProps.textContent] }
           )
         }
       }
-      return h(ElUpload, { attrs: props, on: listeners }, children)
+      return h(IvuUpload, { attrs: props, on: listeners }, children)
     }
   },
 })

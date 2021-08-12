@@ -16,4 +16,4 @@
 
 ## API
 
-参考 [https://element.eleme.io/#/zh-CN/component/date-picker](https://element.eleme.io/#/zh-CN/component/date-picker)
+参考 [https://www.iviewui.com/components/date-picker](https://www.iviewui.com/components/date-picker)

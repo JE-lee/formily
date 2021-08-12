@@ -27,7 +27,7 @@
 <script>
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/vue'
-import { FormLayout, FormItem, Input, Select } from '@formily/element'
+import { FormLayout, FormItem, Input, Select } from '@formily/view-design'
 
 export default {
   components: { FormProvider, Field, FormLayout },
