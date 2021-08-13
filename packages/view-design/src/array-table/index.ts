@@ -438,6 +438,41 @@ export const ArrayTable = observer(
 
       onBeforeUnmount(dispose)
 
+      // hack iview table _columnKey
+      // 提高性能
+      let prevColumns: Record<string, any>[] = []
+      const decideColumns = (
+        columns: Record<string, any>[]
+      ): Record<string, any>[] => {
+        const pick = (cols: Record<string, any>[]) => {
+          prevColumns = cols
+          return cols
+        }
+        if (columns.length !== prevColumns.length) return pick(columns)
+        for (let i = 0; i < prevColumns.length; i++) {
+          const prevColKeys = Object.keys(prevColumns[i]).filter(
+            (item) => item[0] !== '_'
+          )
+          const colKeys = Object.keys(columns[i]).filter(
+            (item) => item[0] !== '_'
+          )
+          if (prevColKeys.length !== colKeys.length) return pick(columns)
+          for (let j = 0; j < prevColKeys.length; j++) {
+            const prevKey = prevColKeys[j]
+            const prevVal = prevColumns[i][prevKey]
+            // 不比较 _ 开头的保留属性以及 ElCoumnProps 中的函数 props
+            if (
+              prevKey[0] !== '_' &&
+              typeof prevVal !== 'function' &&
+              prevVal !== columns[i][prevKey]
+            ) {
+              return pick(columns)
+            }
+          }
+        }
+        return pick(prevColumns)
+      }
+
       return () => {
         const props = attrs as unknown as IArrayTableProps
         const field = fieldRef.value
@@ -467,13 +502,15 @@ export const ArrayTable = observer(
               }
             }
             const slot = props.slot || props.title
+            const col = {
+              ...props,
+              slot,
+              renderHeader,
+            }
+
             return {
               h: render,
-              col: {
-                ...props,
-                slot,
-                renderHeader,
-              },
+              col,
               slot,
               asterisk, // * 号
             }
@@ -499,7 +536,9 @@ export const ArrayTable = observer(
 
         const renderTable = (dataSource?: any[], pager?: () => VNode) => {
           const columns = renderColumns()
-          const iviewTableColumns = columns.map((item) => item.col)
+          const iviewTableColumns = decideColumns(
+            columns.map((item) => item.col)
+          )
           const tableChildren = columns.reduce((childrens, cur) => {
             childrens[cur.slot] = (props) => [cur.h(props)]
             return childrens
