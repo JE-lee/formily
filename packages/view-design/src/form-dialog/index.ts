@@ -92,7 +92,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
   }
 
   const component = defineComponent<IFormDialogComponentProps>({
-    props: ['content', 'resolve', 'reject'],
+    props: ['content', 'resolve', 'reject', 'close'],
     setup(props) {
       return () =>
         h(
@@ -159,14 +159,25 @@ export function FormDialog(title: any, content: any): IFormDialog {
                         dialogProps.onVisibleChange?.(val)
                         // 关闭
                         if (!val) {
-                          setTimeout(() => onClosed?.(), 1000)
+                          onClosed?.()
                         }
                       },
                     },
                   },
                   {
                     default: () => [
-                      h(component, { props: { resolve, reject, content } }, {}),
+                      h(
+                        component,
+                        {
+                          props: {
+                            resolve,
+                            reject,
+                            content,
+                            close: formDialog.close,
+                          },
+                        },
+                        {}
+                      ),
                       h(
                         'div',
                         {

@@ -92,7 +92,7 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
   }
 
   const component = defineComponent<IFormDrawerComponentProps>({
-    props: ['content', 'resolve', 'reject'],
+    props: ['content', 'resolve', 'reject', 'close'],
     setup(props) {
       return () =>
         h(
@@ -175,7 +175,14 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                           default: () =>
                             h(
                               component,
-                              { props: { resolve, reject, content } },
+                              {
+                                props: {
+                                  resolve,
+                                  reject,
+                                  content,
+                                  close: formDrawer.close,
+                                },
+                              },
                               {}
                             ),
                         }
@@ -229,8 +236,7 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                                 {
                                   default: () =>
                                     resolveComponent(
-                                      drawerProps.cancelText ||
-                                        t('el.popconfirm.cancelButtonText')
+                                      drawerProps.cancelText || '取消'
                                     ),
                                 }
                               ),
@@ -252,8 +258,7 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                                 {
                                   default: () =>
                                     resolveComponent(
-                                      drawerProps.okText ||
-                                        t('el.popconfirm.confirmButtonText')
+                                      drawerProps.okText || '确认'
                                     ),
                                 }
                               ),

@@ -354,7 +354,9 @@ export const FormBaseItem = defineComponent<FormItemProps>({
               // label tooltip
               renderTooltipIcon(),
               // label colon
+              // 2021/8/17 fix
               label &&
+                colon &&
                 h(
                   'span',
                   {

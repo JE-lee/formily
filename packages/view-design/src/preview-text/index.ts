@@ -17,7 +17,9 @@ import type { TimePickerProps } from '../time-picker'
 import { Space } from '../space'
 import { Tag } from 'view-design'
 // TODO: date-util
-import { formatDate } from 'element-ui/src/utils/date-util'
+// import { formatDate } from 'element-ui/src/utils/date-util'
+import { TYPE_VALUE_RESOLVER_MAP } from 'view-design/src/components/date-picker/util'
+const formatDate = TYPE_VALUE_RESOLVER_MAP.datetime.formatter
 
 const prefixCls = `${stylePrefix}-preview-text`
 const PlaceholderContext = createContext('N/A')

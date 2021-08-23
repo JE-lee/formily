@@ -44,8 +44,8 @@
 .#{$form-item-prefix}-label {
   position: relative;
   display: flex;
-
-  &-content {
+  // 适配 iview 原来的样式
+  padding: 4px 12px 4px 0, &-content {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
