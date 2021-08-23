@@ -54,6 +54,7 @@ export interface IFormDialog {
 }
 
 export interface IFormDialogComponentProps {
+  close: any
   content: FormDialogContent
   resolve: () => any
   reject: () => any
@@ -103,6 +104,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
               resolveComponent(props.content, {
                 resolve: props.resolve,
                 reject: props.reject,
+                close: props.close,
               }),
           }
         )

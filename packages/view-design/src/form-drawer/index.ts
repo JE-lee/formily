@@ -55,6 +55,7 @@ export interface IFormDrawer {
 }
 
 export interface IFormDrawerComponentProps {
+  close: any
   content: FormDrawerContent
   resolve: () => any
   reject: () => any
@@ -103,6 +104,7 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
               resolveComponent(props.content, {
                 resolve: props.resolve,
                 reject: props.reject,
+                close: props.close,
               }),
           }
         )
