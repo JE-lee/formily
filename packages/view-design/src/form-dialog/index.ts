@@ -1,5 +1,5 @@
 import { h, FormProvider, Fragment } from '@formily/vue'
-import { createForm } from '@formily/core'
+import { createForm, isForm } from '@formily/core'
 import { isNum, isStr, isBool } from '@formily/shared'
 import { Modal, Button } from 'view-design'
 import type { Modal as DialogProps, Button as ButtonProps } from 'view-design'
@@ -54,6 +54,7 @@ export interface IFormDialog {
 }
 
 export interface IFormDialogComponentProps {
+  form: any
   close: any
   content: FormDialogContent
   resolve: () => any
@@ -93,7 +94,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
   }
 
   const component = defineComponent<IFormDialogComponentProps>({
-    props: ['content', 'resolve', 'reject', 'close'],
+    props: ['content', 'resolve', 'reject', 'close', 'form'],
     setup(props) {
       return () =>
         h(
@@ -105,6 +106,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
                 resolve: props.resolve,
                 reject: props.reject,
                 close: props.close,
+                form: props.form,
               }),
           }
         )
@@ -161,7 +163,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
                         dialogProps.onVisibleChange?.(val)
                         // 关闭
                         if (!val) {
-                          onClosed?.()
+                          setTimeout(() => onClosed?.(), 200)
                         }
                       },
                     },
@@ -176,6 +178,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
                             reject,
                             content,
                             close: formDialog.close,
+                            form: env.form,
                           },
                         },
                         {}
@@ -287,9 +290,9 @@ export function FormDialog(title: any, content: any): IFormDialog {
   }
 
   const formDialog = {
-    open: (props: Formily.Core.Types.IFormProps) => {
+    open: (props: Formily.Core.Types.IFormProps | Formily.Core.Models.Form) => {
       if (env.promise) return env.promise
-      env.form = env.form || createForm(props)
+      env.form = env.form || (isForm(props) ? props : createForm(props))
       env.promise = new Promise((resolve, reject) => {
         render(
           true,
@@ -325,7 +328,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
 }
 
 export const FormDialogFooter = defineComponent({
-  setup(props, { attrs, slots }) {
+  setup(props, { slots }) {
     return () => {
       return h(
         Portal,

@@ -157,6 +157,10 @@
     line-height: $--form-item-small-line-height;
   }
 
+  .#{$form-item-prefix}-label-tooltip {
+    height: $--form-item-small-line-height;
+  }
+
   .#{$form-item-prefix}-label-content {
     min-height: $--form-item-small-line-height;
   }

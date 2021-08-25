@@ -1,8 +1,5 @@
 import {
   ref,
-  toRefs,
-  reactive,
-  provide,
   defineComponent,
   onMounted,
   Ref,
@@ -11,7 +8,6 @@ import {
 } from '@vue/composition-api'
 import { isVoidField } from '@formily/core'
 import { connect, mapProps, h } from '@formily/vue'
-import { reduce } from '@formily/shared'
 import { useFormLayout } from '../form-layout'
 import { resolveComponent } from '../__builtins__/shared'
 import { stylePrefix } from '../__builtins__/configs'
@@ -313,7 +309,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
                     default: () => [
                       h(
                         'i',
-                        { class: 'ivu-icon ivu-icon-md-information-circle' },
+                        { class: 'ivu-icon ivu-icon-ios-help-circle-outline' },
                         {}
                       ),
                       h(
@@ -367,7 +363,6 @@ export const FormBaseItem = defineComponent<FormItemProps>({
             ],
           }
         )
-
       const renderFeedback =
         !!feedbackText &&
         feedbackLayout !== 'popover' &&
