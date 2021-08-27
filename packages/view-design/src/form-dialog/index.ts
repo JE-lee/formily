@@ -169,6 +169,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
                           setTimeout(() => onClosed?.(), 200)
                         }
                       },
+                      'on-cancel': () => reject(new Error('cancel')),
                     },
                   },
                   {

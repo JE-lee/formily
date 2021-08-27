@@ -169,6 +169,7 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                           setTimeout(() => onClosed?.(), 1000)
                         }
                       },
+                      'on-cancel': () => reject(new Error('cancel')),
                     },
                   },
                   {
