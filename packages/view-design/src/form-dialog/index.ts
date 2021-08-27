@@ -94,7 +94,7 @@ export function FormDialog(title: any, content: any): IFormDialog {
   }
 
   const component = defineComponent<IFormDialogComponentProps>({
-    props: ['content', 'resolve', 'reject', 'close', 'form'],
+    props: ['content', 'resolve', 'reject', 'close'],
     setup(props) {
       return () =>
         h(
@@ -106,14 +106,17 @@ export function FormDialog(title: any, content: any): IFormDialog {
                 resolve: props.resolve,
                 reject: props.reject,
                 close: props.close,
-                form: props.form,
               }),
           }
         )
     },
   })
 
-  const render = (visible = true, resolve?: () => any, reject?: () => any) => {
+  const render = (
+    visible = true,
+    resolve?: () => any,
+    reject?: (error: Error) => any
+  ) => {
     if (!env.instance) {
       const ComponentConstructor = Vue.extend({
         data() {
@@ -178,7 +181,6 @@ export function FormDialog(title: any, content: any): IFormDialog {
                             reject,
                             content,
                             close: formDialog.close,
-                            form: env.form,
                           },
                         },
                         {}
@@ -228,9 +230,11 @@ export function FormDialog(title: any, content: any): IFormDialog {
                                       if (dialogProps.beforeClose) {
                                         dialogProps.beforeClose(() => {
                                           formDialog.close()
+                                          reject(new Error('manual close'))
                                         })
                                       } else {
                                         formDialog.close()
+                                        reject(new Error('manual close'))
                                       }
                                     },
                                   },
@@ -312,7 +316,8 @@ export function FormDialog(title: any, content: any): IFormDialog {
               })
               .catch(reject)
           },
-          () => {
+          (error) => {
+            reject(error)
             formDialog.close()
           }
         )

@@ -94,7 +94,7 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
   }
 
   const component = defineComponent<IFormDrawerComponentProps>({
-    props: ['content', 'resolve', 'reject', 'close', 'form'],
+    props: ['content', 'resolve', 'reject', 'close'],
     setup(props) {
       return () =>
         h(
@@ -106,14 +106,17 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                 resolve: props.resolve,
                 reject: props.reject,
                 close: props.close,
-                form: props.form,
               }),
           }
         )
     },
   })
 
-  const render = (visible = true, resolve?: () => any, reject?: () => any) => {
+  const render = (
+    visible = true,
+    resolve?: () => any,
+    reject?: (error?: Error) => any
+  ) => {
     if (!env.instance) {
       const ComponentConstructor = Vue.extend({
         data() {
@@ -185,7 +188,6 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                                   reject,
                                   content,
                                   close: formDrawer.close,
-                                  form: env.form,
                                 },
                               },
                               {}
@@ -231,9 +233,11 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                                       if (drawerProps.beforeClose) {
                                         drawerProps.beforeClose(() => {
                                           formDrawer.close()
+                                          reject(new Error('manual close'))
                                         })
                                       } else {
                                         formDrawer.close()
+                                        reject(new Error('manual close'))
                                       }
                                     },
                                   },
@@ -321,7 +325,8 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
               })
               .catch(reject)
           },
-          () => {
+          (error) => {
+            reject(error)
             formDrawer.close()
           }
         )
