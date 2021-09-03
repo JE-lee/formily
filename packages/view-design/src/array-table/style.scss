@@ -49,7 +49,8 @@ $array-table-prefix-cls: '#{$formily-prefix}-array-table';
     }
   }
 
-  .#{$formily-prefix}-form-item-help {
+  .#{$formily-prefix}-form-item-feedback-layout-loose
+    .#{$formily-prefix}-form-item-help {
     position: absolute;
     font-size: 12px;
     top: 100%;

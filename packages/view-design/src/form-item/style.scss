@@ -396,7 +396,8 @@
 // TODO: error 样式
 .#{$form-item-prefix}-error {
   & .#{$namespace}-input,
-  & .#{$namespace}-textarea {
+  & .#{$namespace}-textarea,
+  & .#{$namespace}-input-number {
     &,
     &.hover {
       border-color: $--color-danger;

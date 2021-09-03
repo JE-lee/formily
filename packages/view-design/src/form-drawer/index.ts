@@ -166,7 +166,7 @@ export function FormDrawer(title: any, content: any): IFormDrawer {
                         drawerProps.onVisibleChange?.(val)
                         // 关闭
                         if (!val) {
-                          setTimeout(() => onClosed?.(), 1000)
+                          setTimeout(() => onClosed?.(), 200)
                         }
                       },
                       'on-cancel': () => reject(new Error('cancel')),
