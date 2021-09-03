@@ -41,6 +41,8 @@ import {
 } from 'view-design'
 import { Space } from '../space'
 
+let rowIndex = 0
+
 const RecursionField = _RecursionField as unknown as Component
 
 interface IArrayTableProps extends TableProps {
@@ -567,6 +569,12 @@ export const ArrayTable = observer(
               }
             }
           }
+
+          dataSource.forEach((item) => {
+            if (!item.__tableRowId) {
+              item.__tableRowId = ++rowIndex
+            }
+          })
 
           return h(
             'div',
