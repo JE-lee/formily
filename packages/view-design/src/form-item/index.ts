@@ -207,6 +207,7 @@ export const FormBaseItem = defineComponent<FormItemProps>({
                 props: {
                   disabled: !feedbackText,
                   placement: 'top',
+                  trigger: (props as any).feedbackTriggerType,
                 },
               },
               {

@@ -544,6 +544,30 @@ export const ArrayTable = observer(
             return childrens
           }, {} as RenderChildren)
 
+          // 是否可选择
+          let onSelectionChange: (selections: any[]) => void = () => {}
+          if ((props as any).onSelect) {
+            if (
+              iviewTableColumns[0] &&
+              iviewTableColumns[0].type !== 'selection'
+            ) {
+              iviewTableColumns.unshift({
+                type: 'selection',
+                width: 60,
+                align: 'center',
+              })
+              onSelectionChange = (props as any).onSelect
+            } else {
+              // 清理
+              if (
+                iviewTableColumns[0] &&
+                iviewTableColumns[0].type === 'selection'
+              ) {
+                iviewTableColumns.shift()
+              }
+            }
+          }
+
           return h(
             'div',
             { class: prefixCls },
@@ -562,6 +586,9 @@ export const ArrayTable = observer(
                             ...attrs,
                             data: dataSource,
                             columns: iviewTableColumns,
+                          },
+                          on: {
+                            'on-selection-change': onSelectionChange,
                           },
                         },
                         tableChildren
