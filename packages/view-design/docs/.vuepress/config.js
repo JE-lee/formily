@@ -7,6 +7,7 @@ const componentFiles = utils
   .filter((item) => !['el-form', 'el-form-item', 'index'].includes(item))
 
 module.exports = {
+  base: '/formily/',
   title: 'Formily View-design',
   dest: './doc-site',
   theme: '@vuepress-dumi/dumi',
@@ -15,7 +16,7 @@ module.exports = {
       'link',
       {
         rel: 'icon',
-        href: '//img.alicdn.com/imgextra/i3/O1CN01XtT3Tv1Wd1b5hNVKy_!!6000000002810-55-tps-360-360.svg',
+        href: 'https://img.alicdn.com/imgextra/i3/O1CN01XtT3Tv1Wd1b5hNVKy_!!6000000002810-55-tps-360-360.svg',
       },
     ],
     [

@@ -1,6 +1,6 @@
 {
   "name": "@tcltxk/view-design",
-  "version": "0.0.2",
+  "version": "0.0.11",
   "license": "MIT",
   "main": "lib",
   "module": "esm",
@@ -52,7 +52,8 @@
     "@formily/shared": "2.0.0-beta.82",
     "@formily/vue": "2.0.0-beta.82",
     "portal-vue": "^2.1.7",
-    "vue-slicksort": "^1.2.0"
+    "vue-slicksort": "^1.2.0",
+    "resize-observer-polyfill": "^1.5.0"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.1",
