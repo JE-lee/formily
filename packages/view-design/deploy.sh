@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # 确保脚本抛出遇到的错误
-# set -e
+set -e
 
 # 生成静态文件
 npm run build:docs
@@ -16,8 +16,10 @@ git init
 git add -A
 git commit -m 'deploy'
 
+git remote add origin git@github.com:JE-lee/formily.git
+
 # 如果发布到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:JE-lee/formily.git master:gh-pages
+git push -f origin master:gh-pages
