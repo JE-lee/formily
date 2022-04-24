@@ -1,6 +1,6 @@
 {
-  "name": "@tcltxk/view-design",
-  "version": "0.0.14",
+  "name": "@formily/view-design",
+  "version": "0.0.16",
   "license": "MIT",
   "main": "lib",
   "module": "esm",
@@ -66,7 +66,7 @@
   "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JE-lee/formily/tree/view-design/packages/view-design"
+    "url": "https://github.com/JE-lee/formily/tree/view-design/packages/view-design"
   },
   "homepage": "https://je-lee.github.io/formily/"
 }

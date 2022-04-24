@@ -20,7 +20,7 @@ vue2:
 
 ```bash
 npm install --save view-desgin
-npm install --save @formily/core@2.0.0-beta.82 @formily/vue@2.0.0-beta.82 @vue/composition-api @tcltxk/view-design
+npm install --save @formily/core@2.0.0-beta.82 @formily/vue@2.0.0-beta.82 @vue/composition-api @formily/view-design
 npm install --save-dev sass sass-loader
 ```
 

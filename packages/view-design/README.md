@@ -1,4 +1,4 @@
-# @tcltxk/view-design
+# @formily/view-design
 
 ### Requirement
 
@@ -8,7 +8,7 @@ vue^2.6.0 + @vue/composition-api^1.0.0-beta.1
 
 ```bash
 npm install --save view-desgin
-npm install --save @formily/core@2.0.0-beta.82 @formily/vue@2.0.0-beta.82 @vue/composition-api @tcltxk/view-design
+npm install --save @formily/core@2.0.0-beta.82 @formily/vue@2.0.0-beta.82 @vue/composition-api @formily/view-design
 npm install --save-dev sass sass-loader
 ```
 
@@ -20,4 +20,4 @@ npm install --save-dev sass-loader@^10
 
 ### ✨
 
-check the [@tcltxk/view-design](https://je-lee.github.io/formily/) for free.
+check the [@formily/view-design](https://je-lee.github.io/formily/) for free.
