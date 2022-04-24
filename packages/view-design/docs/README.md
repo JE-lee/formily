@@ -19,9 +19,15 @@ footer: Open-source MIT Licensed | Copyright © 2019-present
 vue2:
 
 ```bash
-$ npm install --save view-desgin
-$ npm install --save @formily/core @formily/vue @vue/composition-api @formily/view-design
+npm install --save view-desgin
+npm install --save @formily/core@2.0.0-beta.82 @formily/vue@2.0.0-beta.82 @vue/composition-api @tcltxk/view-design
+npm install --save-dev sass sass-loader
+```
 
+if you are in webpack 4.x, you should downgrade the sass-loader version to 10.x
+
+```bash
+npm install --save-dev sass-loader@^10
 ```
 
 ## 快速开始
