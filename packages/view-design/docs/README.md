@@ -1,8 +1,8 @@
 ---
 home: true
 heroText: FORMILY VIEW-DESIGN
-tagline: 基于 view-design(iview) 封装的Formily2.x组件体系
-actionText: 开发指南
+tagline: 基于 view-design 封装的Formily2.x组件体系
+actionText: 组件文档
 actionLink: /guide/
 features:
   - title: 更易用

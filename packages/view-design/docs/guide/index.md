@@ -23,20 +23,20 @@
     - DatePicker
     - TimePicker
     - InputNumber
-    - Transfer
+    - ~~Transfer~~
     - Cascader
     - Radio
     - Checkbox
-    - Upload
+    - ~~Upload~~
     - Switch
   - 场景组件
-    - ArrayCards
+    - ~~ArrayCards~~
     - ArrayItems
     - ArrayTable
-    - ArrayTabs
-    - FormCollapse
-    - FormStep
-    - FormTab
+    - ~~ArrayTabs~~
+    - ~~FormCollapse~~
+    - ~~FormStep~~
+    - ~~FormTab~~
     - FormDialog
     - FormDrawer
     - Editable
@@ -59,10 +59,18 @@
 
 ## 安装
 
-```bash
-$ npm install --save view-design
-$ npm install --save @formily/core @formily/vue @vue/composition-api @formily/view-design
+vue2:
 
+```bash
+npm install --save view-desgin
+npm install --save @formily/core@2.0.0-beta.82 @formily/vue@2.0.0-beta.82 @vue/composition-api @formily/view-design
+npm install --save-dev sass sass-loader
+```
+
+if you are in webpack 4.x, you should downgrade the sass-loader version to 10.x
+
+```bash
+npm install --save-dev sass-loader@^10
 ```
 
 ## Q/A

@@ -153,8 +153,8 @@ import {
   ArrayItemsMoveUp,
   ArrayItemsAddition,
   ArrayItemsIndex,
-} from '@formily/element'
-import { Button } from 'element-ui'
+} from '@formily/view-design'
+import { Button } from 'view-design'
 
 const SchemaField = createSchemaField({
   components: {
