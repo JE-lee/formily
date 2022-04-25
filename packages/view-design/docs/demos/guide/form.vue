@@ -52,7 +52,6 @@ import {
 
 const form = createForm()
 const fields = createSchemaField({ components: { Input, Select, FormItem } })
-window.form = form
 export default {
   components: { FormButtonGroup, Submit, Form, ...fields },
   data() {

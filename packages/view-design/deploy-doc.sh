@@ -7,7 +7,7 @@ set -e
 npm run build:docs
 
 # 进入生成的文件夹
-cd docs-site
+cd doc-site
 
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
