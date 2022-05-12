@@ -14,7 +14,7 @@ import {
 } from '@formily/react'
 import { isArr, isBool } from '@formily/shared'
 import { Schema } from '@formily/json-schema'
-import { usePrefixCls } from '../__builtins__'
+import { usePrefixCls, PaginationContext } from '../__builtins__'
 import { ArrayBase, ArrayBaseMixins } from '../array-base'
 
 interface ObservableColumnSource {
@@ -249,10 +249,14 @@ const ArrayTablePagination: ReactFC<IArrayTablePaginationProps> = ({
 
   return (
     <Fragment>
-      {children?.(
-        dataSource?.slice(startIndex, endIndex + 1),
-        renderPagination()
-      )}
+      <PaginationContext.Provider
+        value={{ totalPage, pageSize, changePage: handleChange }}
+      >
+        {children?.(
+          dataSource?.slice(startIndex, endIndex + 1),
+          renderPagination()
+        )}
+      </PaginationContext.Provider>
     </Fragment>
   )
 }

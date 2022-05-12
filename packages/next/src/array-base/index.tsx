@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import { Button } from '@alifd/next'
-import { isValid, clone } from '@formily/shared'
+import { isValid, clone, isFn } from '@formily/shared'
 import { ButtonProps } from '@alifd/next/lib/button'
 import { ArrayField } from '@formily/core'
 import {
@@ -19,6 +19,7 @@ import {
   UpOutlinedIcon,
   MenuOutlinedIcon,
   IconProps,
+  usePagination,
 } from '../__builtins__'
 import cls from 'classnames'
 
@@ -159,6 +160,7 @@ ArrayBase.Addition = (props) => {
     array.field?.pattern !== 'disabled'
   )
     return null
+  const { totalPage = 0, pageSize = 10, changePage } = usePagination()
   return (
     <Button
       {...props}
@@ -175,6 +177,11 @@ ArrayBase.Addition = (props) => {
         } else {
           array.field?.push?.(defaultValue)
           array.props?.onAdd?.(array?.field?.value?.length - 1)
+          // 如果添加数据后超过当前页，则自动切换到下一页
+          const total = array.field?.value.length || 0
+          if (total === totalPage * pageSize + 1 && isFn(changePage)) {
+            changePage(totalPage + 1)
+          }
         }
         if (props.onClick) {
           props.onClick(e)
