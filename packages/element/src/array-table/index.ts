@@ -1,4 +1,11 @@
-import { computed, defineComponent, ref, Ref } from '@vue/composition-api'
+import {
+  computed,
+  defineComponent,
+  ref,
+  Ref,
+  provide,
+  watchEffect,
+} from '@vue/composition-api'
 import {
   GeneralField,
   IVoidFieldFactoryProps,
@@ -16,7 +23,11 @@ import { observer } from '@formily/reactive-vue'
 import { isArr, isBool } from '@formily/shared'
 import { ArrayBase } from '../array-base'
 import { stylePrefix } from '../__builtins__/configs'
-import { composeExport } from '../__builtins__/shared'
+import {
+  composeExport,
+  PaginationSymbol,
+  PaginationAction,
+} from '../__builtins__/shared'
 import type { Schema } from '@formily/json-schema'
 import type {
   Table as TableProps,
@@ -395,6 +406,16 @@ const ArrayTablePagination = defineComponent<IArrayTablePaginationProps>({
         }
       )
     }
+
+    const paginationContext = ref<PaginationAction>({})
+    watchEffect(() => {
+      paginationContext.value = {
+        totalPage: totalPage.value,
+        pageSize: pageSize.value,
+        changePage: (page: number) => (current.value = page),
+      }
+    })
+    provide(PaginationSymbol, paginationContext)
 
     return () => {
       return h(

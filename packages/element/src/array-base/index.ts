@@ -16,7 +16,7 @@ import {
   h,
   ExpressionScope,
 } from '@formily/vue'
-import { isValid, uid, clone } from '@formily/shared'
+import { isValid, uid, clone, isFn } from '@formily/shared'
 import { ArrayField } from '@formily/core'
 import { stylePrefix } from '../__builtins__/configs'
 
@@ -24,7 +24,7 @@ import type { Button as ButtonProps } from 'element-ui'
 import { Button } from 'element-ui'
 import type { Schema } from '@formily/json-schema'
 import { HandleDirective } from 'vue-slicksort'
-import { composeExport } from '../__builtins__/shared'
+import { composeExport, usePagination } from '../__builtins__/shared'
 
 export interface IArrayBaseAdditionProps extends ButtonProps {
   title?: string
@@ -242,6 +242,7 @@ const ArrayBaseAddition = defineComponent({
     const self = useField()
     const array = useArray()
     const prefixCls = `${stylePrefix}-array-base`
+    const paginationRef = usePagination()
     return () => {
       if (!array) return null
       if (array?.field.value.pattern !== 'editable') return null
@@ -268,6 +269,17 @@ const ArrayBaseAddition = defineComponent({
               } else {
                 array?.field?.value.push(defaultValue)
                 array.listeners?.add?.(array?.field?.value?.value?.length - 1)
+
+                // 如果添加数据后超过当前页，则自动切换到下一页
+                const {
+                  totalPage = 0,
+                  pageSize = 10,
+                  changePage,
+                } = paginationRef.value
+                const total = array.field?.value?.value.length || 0
+                if (total === totalPage * pageSize + 1 && isFn(changePage)) {
+                  changePage(totalPage + 1)
+                }
               }
               if (listeners.click) {
                 listeners.click(e)
